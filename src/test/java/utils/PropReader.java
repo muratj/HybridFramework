@@ -1,13 +1,12 @@
 package utils;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public class PropReader {
-    private Properties prop;
+    private static Properties prop;
 
-    public Properties init_prop() {
+    public static void init_prop() {
         String path = System.getProperty("user.dir");
         prop = new Properties();
         try {
@@ -17,10 +16,9 @@ public class PropReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return prop;
     }
 
-    public String getProp(String key) {
+    public static String getProp(String key) {
         init_prop();
         return prop.getProperty(key);
     }
