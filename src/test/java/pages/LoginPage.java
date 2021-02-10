@@ -4,9 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage {
-    WebDriver driver;
+import java.util.concurrent.TimeUnit;
 
+public class LoginPage {
+    public WebDriver driver;
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -19,6 +20,7 @@ public class LoginPage {
 
     // page actions
     public void enterEmail(String email) {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(emailField).sendKeys(email);
     }
     public void enterPassword(String password) {
@@ -29,5 +31,12 @@ public class LoginPage {
     }
     public WebElement redFrame() {
         return driver.findElement(errorFrame);
+    }
+
+    public HomePage login(String email, String password) {
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
+        return new HomePage(driver);
     }
 }

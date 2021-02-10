@@ -6,15 +6,18 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.PropReader;
 
 public class LoginPageSteps {
 
-    private LoginPage loginPage;
     private final WebDriver driver = WebDriverFactory.getDriver();
+    private final String url = PropReader.getProp("url");
+    private LoginPage loginPage;
     private HomePage homePage;
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
+        driver.get(url);
         loginPage = new LoginPage(driver);
     }
 

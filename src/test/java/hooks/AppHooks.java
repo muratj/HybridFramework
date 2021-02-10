@@ -22,11 +22,6 @@ public class AppHooks {
         WebDriverFactory.init_driver(browser);
         driver = WebDriverFactory.getDriver();
     }
-    @Before(order = 1)
-    public void getApp() {
-        driver.get(PropReader.getProp("url"));
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
 
     @After
     public void tearDown(Scenario scenario) {
